@@ -18,9 +18,7 @@ const Navbar = () => {
     <nav className="navbar is-light" role="navigation" aria-label="main navigation">
         <div className="container">
       <div className="navbar-brand">
-        <a className="navbar-item" href="https://bulma.io">
-          <h1 className='has-text-weight-bold is-size-4'>NewsApp</h1>
-        </a>
+      <h1 className='has-text-weight-bold is-size-4'>MyPersonality</h1>
     
         <a href="/" role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
           <span aria-hidden="true"></span>

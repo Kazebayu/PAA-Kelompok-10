@@ -1,22 +1,18 @@
 import React,{useState, useEffect} from 'react'
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
-import { useNavigate, Link} from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Dashboard = () => {
-    const [id, setId] = useState('');
     const [name, setName] = useState('');
-    const [email, setEmail] = useState('')
     const [token, setToken] = useState('');
     const [expire, setExpire] = useState('');
     const [users, setUsers] = useState([]);
     const navigate = useNavigate();
-    const [personalityName, setPersonalityName] = useState('');
 
     useEffect(() => {
-        getUsers();
-        getPersById();
         refreshToken();
+        getUsers();
     }, []);
 
     const refreshToken = async() => {
@@ -24,9 +20,7 @@ const Dashboard = () => {
             const response = await axios.get('http://localhost:5000/token');
             setToken(response.data.accessToken);
             const decoded = jwt_decode(response.data.accessToken);
-            setId(decoded.id);
             setName(decoded.name);
-            setEmail(decoded.email);
             setExpire(decoded.exp);
         } catch (error) {
             if(error.response){
@@ -61,11 +55,6 @@ const Dashboard = () => {
         setUsers(response.data)
     }
 
-    const getPersById = async () =>{
-        const response =await axios.get(`http://localhost:5000/pers/${id}`)
-        setPersonalityName(response.data.personalityName);
-    }
-
     const deleteUser = async (id) =>{
         try {
             await axios.delete(`http://localhost:5000/users/${id}`, {
@@ -79,26 +68,40 @@ const Dashboard = () => {
         }
     }
 
+    const getUserById = async () =>{
+        const response =await axios.get(`http://localhost:5000/users/${id}`)
+        setName(response.data.name);
+        setEmail(response.data.email);
+        setGender(response.data.gender);
+    }
+
   return (
     <div className='container mt-5'>
-        <h1 className='title is-3'>Selamat datang, {name}</h1>
-        <p>id= {id}</p>
-        <p>Kamu bisa tahu kepribadianmua ofhsakdjvusjkahvoeisdljb s entahlah isi nnt aj</p>
+        <h1 className='title is-3'>Selamat datang {name} !</h1>
         {/* <button onClick={getUsers} className='button is-info'>Show Users</button> */}
         <table className='table is-striped is-fullwidth mt-5'>
-            <tbody>
+            <thead>
                 <tr>
-                    <td className='has-text-centered'>
-                        <p>{name}</p>
-                        <p>{email}</p>
-                        <p>{personalityName}</p>
-                        <Link to={`/edit/${id}`} className='button is-small is-danger'>Edit</Link>
-                    </td>
-                    <td className='has-text-centered'>
-                        <p>Isi pertanyaan dibawah ini sesuai dengan jati dirimu</p>
-                        <Link to={`/personality/${id}`} className='button is-small is-primary'>Test Personalitymu</Link>
+                    <th>No. </th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    {/* <th>Gender</th> */}
+                    <th>Opsi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {users.map((user, index) => (
+                <tr key={user.id}>
+                   <td>{index + 1}</td>
+                   <td>{user.name}</td>
+                   <td>{user.email}</td>
+                   {/* <td>{user.gender}</td> */}
+                    <td>
+                        <Link to={`/edit/${user.id}`} className='button is-small is-info'>Edit</Link>
+                        <button onClick={()=> deleteUser(user.id)} className='button is-small is-danger'>Hapus</button>
                     </td>
                 </tr> 
+                ))}
             </tbody>
         </table>
     </div>

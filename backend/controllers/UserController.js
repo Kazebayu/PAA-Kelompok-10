@@ -2,12 +2,50 @@ import { where } from "sequelize";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/UserModel.js";
+import Pers from "../models/PersModel.js";
 
 export const getUsers = async(req, res) => {
     try {
         const response = await User.findAll({
             attributes:['id', 'name','email']
         });
+        res.status(200).json(response);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+export const getPers = async(req, res) => {
+    try {
+        const response = await Pers.findAll({
+            attributes:['idPers', 'personalityName','id']
+        });
+        res.status(200).json(response);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+export const getUsersById = async(req, res) => {
+    try {
+        const response = await User.findOne({
+            where: {
+                id: req.params.id
+            }
+    });
+        res.status(200).json(response);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+export const getPersById = async(req, res) => {
+    try {
+        const response = await Pers.findOne({
+            where: {
+                id: req.params.id
+            }
+    });
         res.status(200).json(response);
     } catch (error) {
         console.log(error.message);
@@ -87,19 +125,6 @@ export const logout = async(req, res) => {
     });
     res.clearCookie('refreshToken');
     return res.sendStatus(200);
-}
-
-export const getUsersById = async(req, res) => {
-    try {
-        const response = await User.findOne({
-            where: {
-                id: req.params.id
-            }
-    });
-        res.status(200).json(response);
-    } catch (error) {
-        console.log(error.message);
-    }
 }
 
 // export const createUser = async(req, res) => {
