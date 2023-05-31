@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 const EditUser = () => {
 const [name,setName] = useState("");
 const [email,setEmail] = useState("");
-const [gender,setGender] = useState("Male");
+const [personality,setPersonality] = useState("");
 const navigate = useNavigate();
 const {id} = useParams();
 
@@ -19,7 +19,7 @@ const updateUser = async (e) => {
         await axios.patch(`http://localhost:5000/users/${id}`,{
             name,
             email,
-            gender,
+            personality,
         });
         navigate("/dashboard");
     } catch (error) {
@@ -31,7 +31,7 @@ const getUserById = async () =>{
     const response =await axios.get(`http://localhost:5000/users/${id}`)
     setName(response.data.name);
     setEmail(response.data.email);
-    setGender(response.data.gender);
+    setPersonality(response.data.personality);
 }
 
   return (
@@ -61,20 +61,17 @@ const getUserById = async () =>{
                             placeholder='Email'/>
                     </div>
                 </div>
-                <div className="field">
-                    <label className="label">Gender</label>
+                {/* <div className="field">
+                    <label className="label">Personality</label>
                     <div className="control">
-                        <div className="select is-fullwidth">
-                            <select 
-                                value={gender} 
-                                onChange={(e)=> setGender(e.target.value)}
-                            >
-                                <option value="Laki-laki">Laki-laki</option>
-                                <option value="Perempuan">Perempuan</option>
-                            </select>
-                        </div>
+                        <input 
+                            type="text" 
+                            className="input" 
+                            value={personality} 
+                            onChange={(e)=> setEmail(e.target.value)}
+                            placeholder='Personality'/>
                     </div>
-                </div>
+                </div> */}
                 <div className="field">
                     <button type='submit' className='button is-success'>
                         Perbarui

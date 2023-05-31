@@ -7,6 +7,7 @@ const Dashboard = () => {
     const [id, setId] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('')
+    const [personality, setPersonality] = useState('')
     const [token, setToken] = useState('');
     const [expire, setExpire] = useState('');
     const [users, setUsers] = useState([]);
@@ -27,6 +28,7 @@ const Dashboard = () => {
             setId(decoded.id);
             setName(decoded.name);
             setEmail(decoded.email);
+            setPersonality(decoded.personality);
             setExpire(decoded.exp);
         } catch (error) {
             if(error.response){
@@ -91,12 +93,39 @@ const Dashboard = () => {
                     <td className='has-text-centered'>
                         <p>{name}</p>
                         <p>{email}</p>
-                        <p>{personalityName}</p>
+                        <p>{personality}</p>
                         <Link to={`/edit/${id}`} className='button is-small is-danger'>Edit</Link>
                     </td>
                     <td className='has-text-centered'>
                         <p>Isi pertanyaan dibawah ini sesuai dengan jati dirimu</p>
                         <Link to={`/personality/${id}`} className='button is-small is-primary'>Test Personalitymu</Link>
+                    </td>
+                </tr> 
+            </tbody>
+        </table>
+        <h1>Kepribadian seperti apa yang kamu punya?</h1>
+        <table className='table is-striped is-fullwidth mt-5'>
+            <tbody>
+                <tr>
+                    <td className='has-text-centered'>
+                        INtrovert adalah...    
+                    </td>
+                    <td className='has-text-centered'>
+                        Introvert vs extrovert
+                    </td>
+                    <td className='has-text-centered'>
+                        Extrovert adalah...    
+                    </td>
+                </tr> 
+                <tr>
+                    <td className='has-text-centered'>
+                        INtrovert adalah...    
+                    </td>
+                    <td className='has-text-centered'>
+                        Introvert vs extrovert
+                    </td>
+                    <td className='has-text-centered'>
+                        Extrovert adalah...    
                     </td>
                 </tr> 
             </tbody>

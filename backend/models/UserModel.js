@@ -6,7 +6,7 @@ const {DataTypes} = Sequelize;
 const User = db.define('users',{
     name: DataTypes.STRING,
     email: DataTypes.STRING,
-    gender: DataTypes.STRING,
+    personality: DataTypes.STRING,
     password: DataTypes.STRING,
     refresh_token: DataTypes.TEXT,
 },{
