@@ -71,7 +71,7 @@ const EditUser = () => {
               />
             </div>
           </div>
-          <div className="field">
+          {/* <div className="field">
             <label className="label">Personality</label>
             <div className="control">
               <input
@@ -82,7 +82,7 @@ const EditUser = () => {
                 placeholder="Email"
               />
             </div>
-          </div>
+          </div> */}
           <div className="field">
             <button type="submit" className="button is-success">
               Perbarui

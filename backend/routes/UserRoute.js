@@ -1,10 +1,7 @@
 import express from "express";
 import {
     getUsers,
-    getPers, 
     getUsersById,
-    getPersById,
-    //createUser, diganti register
     updateUser,
     deleteUser,
     register,
@@ -17,10 +14,7 @@ import { refreshToken } from "../controllers/RefreshToken.js";
 const router = express.Router();
 
 router.get('/users', verifyToken, getUsers);
-//router.get('/pers', getPers);
 router.get('/users/:id',getUsersById);
-router.get('/pers/:id',getPersById);
-//router.post('/users', createUser); diganti register
 router.patch('/users/:id', updateUser);
 router.delete('/users/:id', deleteUser);
 router.post('/users', register);

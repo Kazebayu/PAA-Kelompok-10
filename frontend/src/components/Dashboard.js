@@ -12,11 +12,9 @@ const Dashboard = () => {
     const [expire, setExpire] = useState('');
     const [users, setUsers] = useState([]);
     const navigate = useNavigate();
-    const [personalityName, setPersonalityName] = useState('');
 
     useEffect(() => {
         getUsers();
-        getPersById();
         refreshToken();
     }, []);
 
@@ -63,23 +61,6 @@ const Dashboard = () => {
         setUsers(response.data)
     }
 
-    const getPersById = async () =>{
-        const response =await axios.get(`http://localhost:5000/pers/${id}`)
-        setPersonalityName(response.data.personalityName);
-    }
-
-    const deleteUser = async (id) =>{
-        try {
-            await axios.delete(`http://localhost:5000/users/${id}`, {
-                headers:{
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            getUsers();
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
   return (
     <div className='container mt-5'>

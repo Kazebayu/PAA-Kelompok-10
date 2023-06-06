@@ -8,8 +8,6 @@ const [email,setEmail] = useState("");
 const [personality,setPersonality] = useState("");
 const navigate = useNavigate();
 const {id} = useParams();
-const [pers, setPers] = useState([]);
-const [personalityName,setPersonalityName] = useState("");
 const [a, setA] = useState(0);
 const [b, setB] = useState(0);
 const [c, setC] = useState(0);
@@ -18,8 +16,7 @@ const [d, setD] = useState(0);
 
 useEffect(() => {
     getUserById();
-    getPers();
-    getPersById();
+
 }, []);
 
 const updateUser = async (e) => {
@@ -42,37 +39,7 @@ const getUserById = async () =>{
     setPersonality(response.data.personality);
 }
 
-const getPers = async() => {
-    const response = await axios.get('http://localhost:5000/pers')
-    setPers(response.data);
-}
 
-const getPersById = async () =>{
-    const response =await axios.get(`http://localhost:5000/pers/${id}`)
-    setPersonalityName(response.data.personalityName);
-}
-
-
-
-// const handlePertanyaan1Change = (e) => {
-//     const selectedValue = Number(e.target.value);
-//     setA(selectedValue);
-//     setPersonality(selectedValue + b);
-//   };
-
-// const handleHasil = () => {
-//     if (a >= 1){
-//         setA('E')
-//     } else {
-//         setA('I')
-//     };
-//     if (b >= 1){
-//         setB('S')
-//     } else {
-//         setB('N')
-//     };
-//     setPersonality(a+b+c+d);
-// };
 
 const handleHasil = () => {
     let result = "";
@@ -128,7 +95,6 @@ const handleHasil = () => {
   return (
     <div className="columns mt-5 is-center">
         <div className="column is-half">
-        <p>{a}{b}{c}{d}</p>
             <form onSubmit={updateUser}>
                 <div className="field">
                     <label className="label">Pertanyaan 1</label>
@@ -427,13 +393,11 @@ const handleHasil = () => {
                     </div>
                 </div>
                          
-                          
-
 
 
                 <div className="field">
                     <button type='submit' className='button is-success'>
-                        Perbarui
+                        Simpan
                     </button>
                 </div>
             </form>
