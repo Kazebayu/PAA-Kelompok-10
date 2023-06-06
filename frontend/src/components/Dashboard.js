@@ -84,9 +84,7 @@ const Dashboard = () => {
   return (
     <div className='container mt-5'>
         <h1 className='title is-3'>Selamat datang, {name}</h1>
-        <p>id= {id}</p>
-        <p>Kamu bisa tahu kepribadianmua ofhsakdjvusjkahvoeisdljb s entahlah isi nnt aj</p>
-        {/* <button onClick={getUsers} className='button is-info'>Show Users</button> */}
+        <p>Kamu dapat tahu bagaimana kepribadianmu yang sesungguhnya dengan menjawab pertanyaan-pertanyaan pada form dibawah</p>
         <table className='table is-striped is-fullwidth mt-5'>
             <tbody>
                 <tr>
@@ -98,34 +96,82 @@ const Dashboard = () => {
                     </td>
                     <td className='has-text-centered'>
                         <p>Isi pertanyaan dibawah ini sesuai dengan jati dirimu</p>
-                        <Link to={`/personality/${id}`} className='button is-small is-primary'>Test Personalitymu</Link>
+                        <Link to={`/personality/${id}`} className='button is-small is-primary'>Tes Personalityku</Link>
                     </td>
                 </tr> 
             </tbody>
         </table>
-        <h1>Kepribadian seperti apa yang kamu punya?</h1>
+        <h1>Apakah kamu sudah tahu bagaimana kepribadianmu?</h1>
+        <h1>Mari kita lihat penjelasannya dibawah ini</h1>
+        <h1>{personality}</h1>
         <table className='table is-striped is-fullwidth mt-5'>
             <tbody>
                 <tr>
                     <td className='has-text-centered'>
-                        INtrovert adalah...    
+                        Extraversion
+                        <li>Terpulihkan energinya saat beramai-ramai</li> 
+                        <li>Lebih suka bekerja dalam tim</li> 
+                        <li>Cenderung ceplas-ceplos</li> 
                     </td>
                     <td className='has-text-centered'>
-                        Introvert vs extrovert
+                        E vs I
                     </td>
                     <td className='has-text-centered'>
-                        Extrovert adalah...    
+                        Introversion
+                        <li>Terpulihkan energinya saat sendirian</li> 
+                        <li>Lebih suka bekerja sendiri</li> 
+                        <li>Cenderung pendiam</li>  
                     </td>
                 </tr> 
                 <tr>
                     <td className='has-text-centered'>
-                        INtrovert adalah...    
+                        Sensing
+                        <li>Melihat sesuatu apa adanya</li> 
+                        <li>Memusatkan perhatian pada hal yang konkrit dan detail</li> 
+                        <li>Lebih suka ide-ide yang praktis</li> 
                     </td>
                     <td className='has-text-centered'>
-                        Introvert vs extrovert
+                        S vs N
                     </td>
                     <td className='has-text-centered'>
-                        Extrovert adalah...    
+                        Intuition
+                        <li>Membayangkan kemungkinan yang dapat terjadi</li> 
+                        <li>Memusatkan pada gambaran besar</li> 
+                        <li>Menyukai ide-ide dan konsep-konsep</li>  
+                    </td>
+                </tr> 
+                <tr>
+                    <td className='has-text-centered'>
+                        Thinking
+                        <li>Mengutamakan aspek keadilan</li> 
+                        <li>Menyukai mencari celah dari suatu argumen</li> 
+                        <li>Digambarkan sebagai orang yang logis</li> 
+                    </td>
+                    <td className='has-text-centered'>
+                        T vs F
+                    </td>
+                    <td className='has-text-centered'>
+                        Feeling
+                        <li>Mengutamakan hubungan yang baik dengan orang lain</li> 
+                        <li>Suka menyenangkan orang lain</li> 
+                        <li>Digambarkan sebagai orang yang hangat dan empatetik</li>  
+                    </td>
+                </tr> 
+                <tr>
+                    <td className='has-text-centered'>
+                        Judging
+                        <li>Berpikir bahwa aturan dan deadline harus ditaati</li> 
+                        <li>Lebih suka mendapat instruksi yang detail</li> 
+                        <li>Membuat rencara untuk menghadapi masa depan</li> 
+                    </td>
+                    <td className='has-text-centered'>
+                        J vs P
+                    </td>
+                    <td className='has-text-centered'>
+                        Perceiving
+                        <li>Melihat aturan dan deadline sebagai hal yang fleksibel</li> 
+                        <li>Suka mengembangkan dan memperbaiki sesuatu sejalan dengan berjalannya aktivitas</li> 
+                        <li>Termasuk spontan, menyukai kejutan dan situasi baru</li>  
                     </td>
                 </tr> 
             </tbody>

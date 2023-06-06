@@ -10,8 +10,10 @@ const navigate = useNavigate();
 const {id} = useParams();
 const [pers, setPers] = useState([]);
 const [personalityName,setPersonalityName] = useState("");
-const [a, setA] = useState(1);
-const [b, setB] = useState(1);
+const [a, setA] = useState(0);
+const [b, setB] = useState(0);
+const [c, setC] = useState(0);
+const [d, setD] = useState(0);
 //const [all, setAll] = useState(a+b);
 
 useEffect(() => {
@@ -22,6 +24,7 @@ useEffect(() => {
 
 const updateUser = async (e) => {
     e.preventDefault();
+    handleHasil();
     try {
         await axios.patch(`http://localhost:5000/users/${id}`,{
             personality,
@@ -51,134 +54,383 @@ const getPersById = async () =>{
 
 
 
-const handlePertanyaan1Change = (e) => {
+// const handlePertanyaan1Change = (e) => {
+//     const selectedValue = Number(e.target.value);
+//     setA(selectedValue);
+//     setPersonality(selectedValue + b);
+//   };
+
+// const handleHasil = () => {
+//     if (a >= 1){
+//         setA('E')
+//     } else {
+//         setA('I')
+//     };
+//     if (b >= 1){
+//         setB('S')
+//     } else {
+//         setB('N')
+//     };
+//     setPersonality(a+b+c+d);
+// };
+
+const handleHasil = () => {
+    let result = "";
+    if (a >= 0) {
+        result += "E";
+    } else {
+        result += "I";
+    }
+    if (b >= 0) {
+        result += "S";
+    } else {
+        result += "N";
+    }
+    if (c >= 0) {
+        result += "T";
+    } else {
+        result += "F";
+    }
+    if (d >= 0) {
+        result += "J";
+    } else {
+        result += "P";
+    }
+    setPersonality(result);
+};
+
+
+  const handlePertanyaanA = (e) => {
     const selectedValue = Number(e.target.value);
-    setA(selectedValue);
-    setPersonality(selectedValue + b);
+    setA((prevA) => prevA + selectedValue);
+    handleHasil();
   };
 
-  const handlePertanyaan2Change = (e) => {
-    const selectedValue = Number(e.target.value);
-    setB(selectedValue);
-    if (selectedValue >= 1){
-        setPersonality(selectedValue+ 'N')
-    } else {
-        setPersonality(selectedValue+ 'S')
-    };
-    //setPersonality(selectedValue + a);
-  };
-  
-  const handlePertanyaan3Change = (e) => {
+  const handlePertanyaanB= (e) => {
     const selectedValue = Number(e.target.value);
     setB((prevB) => prevB + selectedValue);
+    handleHasil();
   };
 
-var all = a+b;
+  const handlePertanyaanC= (e) => {
+    const selectedValue = Number(e.target.value);
+    setC((prevC) => prevC + selectedValue);
+    handleHasil();
+  };
+
+  const handlePertanyaanD= (e) => {
+    const selectedValue = Number(e.target.value);
+    setD((prevD) => prevD + selectedValue);
+    handleHasil();
+  }; 
 
 
   return (
     <div className="columns mt-5 is-center">
         <div className="column is-half">
-        <p>{a}{b}</p>
-        <p>{all}</p>
+        <p>{a}{b}{c}{d}</p>
             <form onSubmit={updateUser}>
                 <div className="field">
                     <label className="label">Pertanyaan 1</label>
+                    <p>Saya mencoba untuk tidak menarik perhatian pada diri daya sendiri</p>
                     <div className="control">
-                        <div className="select is-fullwidth">
-                            <select 
-                                value={a} 
-                                onChange={handlePertanyaan1Change}
-                            >
-                                <option value={1}>YA</option>
-                                <option value={-1}>TIDAK</option>
-                            </select>
-                        </div>
+                        <label className="radio">
+                            <input
+                                type="radio"
+                                name="p1"
+                                value={10}
+                                onChange={handlePertanyaanA}
+                            />
+                            Tidak Akurat
+                        </label>
+                        <label className="radio">
+                            <input
+                                type="radio"
+                                name="p1"
+                                value={-10}
+                                onChange={handlePertanyaanA}
+                            />
+                            Akurat
+                        </label>
                     </div>
                 </div>
                 <div className="field">
                     <label className="label">Pertanyaan 2</label>
+                    <p>Berada di sekitar banyak orang membuat saya bersemangat</p>
                     <div className="control">
                         <label className="radio">
                             <input
                                 type="radio"
                                 name="p2"
-                                value={1}
-                                onChange={handlePertanyaan2Change}
+                                value={-10}
+                                onChange={handlePertanyaanA}
                             />
-                            YA
+                            Tidak Akurat
                         </label>
                         <label className="radio">
                             <input
                                 type="radio"
                                 name="p2"
-                                value={-1}
-                                onChange={handlePertanyaan2Change}
+                                value={10}
+                                onChange={handlePertanyaanA}
                             />
-                            TIDAK
+                            Akurat
                         </label>
                     </div>
                 </div>
                 <div className="field">
                     <label className="label">Pertanyaan 3</label>
+                    <p>Saya sering menjadi orang yang memulai percakapan</p>
                     <div className="control">
                         <label className="radio">
                             <input
                                 type="radio"
                                 name="p3"
-                                value={1}
-                                onChange={handlePertanyaan3Change}
+                                value={-10}
+                                onChange={handlePertanyaanA}
                             />
-                            YA
+                            Tidak Akurat
                         </label>
                         <label className="radio">
                             <input
                                 type="radio"
                                 name="p3"
-                                value={-1}
-                                onChange={handlePertanyaan3Change}
+                                value={10}
+                                onChange={handlePertanyaanA}
                             />
-                            TIDAK
+                            Akurat
                         </label>
                     </div>
                 </div>
-                {/* <div className="field">
-                    <label className="label">Pertanyaan 3</label>
+
+
+                <div className="field">
+                    <label className="label">Pertanyaan 4</label>
+                    <p>Saya menghabiskan waktu mencoba memahami diri sendiri</p>
                     <div className="control">
-                        <div className="select is-fullwidth">
-                            <select 
-                                onChange={handlePertanyaan2Change}
-                            >
-                                <option value={1}>YA</option>
-                                <option value={-1}>TIDAK</option>
-                            </select>
-                        </div>
+                        <label className="radio">
+                            <input
+                                type="radio"
+                                name="p4"
+                                value={10}
+                                onChange={handlePertanyaanB}
+                            />
+                            Tidak Akurat
+                        </label>
+                        <label className="radio">
+                            <input
+                                type="radio"
+                                name="p4"
+                                value={-10}
+                                onChange={handlePertanyaanB}
+                            />
+                            Akurat
+                        </label>
                     </div>
-                </div> */}
-                {/* <div className="field">
-                    <label className="label">Personality</label>
+                </div>
+                <div className="field">
+                    <label className="label">Pertanyaan 5</label>
+                    <p>Saya menikmati diskusi filosofis</p>
                     <div className="control">
-                        <input 
-                            type="text" 
-                            className="input" 
-                            onChange={handleAll}
-                            placeholder='Personality'/>
+                        <label className="radio">
+                            <input
+                                type="radio"
+                                name="p5"
+                                value={10}
+                                onChange={handlePertanyaanB}
+                            />
+                            Tidak Akurat
+                        </label>
+                        <label className="radio">
+                            <input
+                                type="radio"
+                                name="p5"
+                                value={-10}
+                                onChange={handlePertanyaanB}
+                            />
+                            Akurat
+                        </label>
                     </div>
-                </div> */}
-                {/* <div className="field">
-                    <label className="label">Gender</label>
+                </div>
+                <div className="field">
+                    <label className="label">Pertanyaan 6</label>
+                    <p>Saya menyukai ide-ide yang mudah dipahami daripada ide-ide yang kompleks </p>
                     <div className="control">
-                        <div className="select is-fullwidth">
-                            <select 
-                                value={all} 
-                                onChange={(e)=> setPersonality(e.target.value)}
-                            >
-                                <option value={a}>Laki-laki</option>
-                                <option value={a}>Perempuan</option>
-                            </select>
-                        </div>
+                        <label className="radio">
+                            <input
+                                type="radio"
+                                name="p6"
+                                value={-10}
+                                onChange={handlePertanyaanB}
+                            />
+                            Tidak Akurat
+                        </label>
+                        <label className="radio">
+                            <input
+                                type="radio"
+                                name="p6"
+                                value={10}
+                                onChange={handlePertanyaanB}
+                            />
+                            Akurat
+                        </label>
                     </div>
-                </div> */}
+                </div>
+
+
+
+                <div className="field">
+                    <label className="label">Pertanyaan 7</label>
+                    <p>Saya mengutamakan kebutuhan saya daripada kebutuhan orang lain</p>
+                    <div className="control">
+                        <label className="radio">
+                            <input
+                                type="radio"
+                                name="p7"
+                                value={10}
+                                onChange={handlePertanyaanC}
+                            />
+                            Tidak Akurat
+                        </label>
+                        <label className="radio">
+                            <input
+                                type="radio"
+                                name="p7"
+                                value={-10}
+                                onChange={handlePertanyaanC}
+                            />
+                            Akurat
+                        </label>
+                    </div>
+                </div>   
+                <div className="field">
+                    <label className="label">Pertanyaan 8</label>
+                    <p>Saya memaafkan kesalahan orang lain, bahkan ketika itu merugikan saya</p>
+                    <div className="control">
+                        <label className="radio">
+                            <input
+                                type="radio"
+                                name="p8"
+                                value={10}
+                                onChange={handlePertanyaanC}
+                            />
+                            Tidak Akurat
+                        </label>
+                        <label className="radio">
+                            <input
+                                type="radio"
+                                name="p8"
+                                value={-10}
+                                onChange={handlePertanyaanC}
+                            />
+                            Akurat
+                        </label>
+                    </div>
+                </div>   
+                <div className="field">
+                    <label className="label">Pertanyaan 9</label>
+                    <p>Saya objektif saat membuat keputusan</p>
+                    <div className="control">
+                        <label className="radio">
+                            <input
+                                type="radio"
+                                name="p9"
+                                value={-10}
+                                onChange={handlePertanyaanC}
+                            />
+                            Tidak Akurat
+                        </label>
+                        <label className="radio">
+                            <input
+                                type="radio"
+                                name="p9"
+                                value={10}
+                                onChange={handlePertanyaanC}
+                            />
+                            Akurat
+                        </label>
+                    </div>
+                </div>
+
+
+
+                <div className="field">
+                    <label className="label">Pertanyaan 10</label>
+                    <p>Saya kesulitan mengikuti rutinitas</p>
+                    <div className="control">
+                        <label className="radio">
+                            <input
+                                type="radio"
+                                name="p10"
+                                value={10}
+                                onChange={handlePertanyaanD}
+                            />
+                            Tidak Akurat
+                        </label>
+                        <label className="radio">
+                            <input
+                                type="radio"
+                                name="p10"
+                                value={-10}
+                                onChange={handlePertanyaanD}
+                            />
+                            Akurat
+                        </label>
+                    </div>
+                </div>
+                <div className="field">
+                    <label className="label">Pertanyaan 11</label>
+                    <p>Saya sangat memperhatikan tenggat waktu</p>
+                    <div className="control">
+                        <label className="radio">
+                            <input
+                                type="radio"
+                                name="p11"
+                                value={-10}
+                                onChange={handlePertanyaanD}
+                            />
+                            Tidak Akurat
+                        </label>
+                        <label className="radio">
+                            <input
+                                type="radio"
+                                name="p11"
+                                value={10}
+                                onChange={handlePertanyaanD}
+                            />
+                            Akurat
+                        </label>
+                    </div>
+                </div>
+                <div className="field">
+                    <label className="label">Pertanyaan 12</label>
+                    <p>Saya sering membuat keputusan berdasarkan kata hati saya</p>
+                    <div className="control">
+                        <label className="radio">
+                            <input
+                                type="radio"
+                                name="p12"
+                                value={10}
+                                onChange={handlePertanyaanD}
+                            />
+                            Tidak Akurat
+                        </label>
+                        <label className="radio">
+                            <input
+                                type="radio"
+                                name="p12"
+                                value={-10}
+                                onChange={handlePertanyaanD}
+                            />
+                            Akurat
+                        </label>
+                    </div>
+                </div>
+                         
+                          
+
+
+
                 <div className="field">
                     <button type='submit' className='button is-success'>
                         Perbarui
