@@ -44,59 +44,62 @@ const EditUser = () => {
   };
 
   return (
-    <div className="columns mt-5 is-center">
-      <div className="column is-half">
-        <form onSubmit={updateUser}>
-          <div className="field">
-            <label className="label">Nama</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Nama"
-              />
+    <section className="hero has-background-light is-fullwidth pb-5">
+      <div className="hero-body">
+        <div className="container">
+            <div className='columns is-centered'>
+                <div className='column is-4-desktop'>
+                    <form className='box' onSubmit={updateUser}>
+                    <h1 className='label has-text-centered is-size-4 mt-2'>Edit Data Akun Anda</h1>
+                    <hr></hr>
+                        <div className='field'>
+                            <label className='has-text-weight-medium'>Nama:</label>
+                            <div className='controls'>
+                              <input
+                                type="text"
+                                className="input"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                placeholder="Nama"
+                              />
+                            </div>
+                        </div>
+                        <div className='field'>
+                            <label className='has-text-weight-medium'>Email:</label>
+                            <div className='controls'>
+                              <input
+                                type="text"
+                                className="input"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="Email"
+                              />
+                            </div>
+                        </div>
+                        <div className='field mt-6'>
+                          <button type="submit" className="button is-success">
+                            Perbarui
+                          </button>
+                        </div>
+                        <p className='is-size-7 mt-4 has-text-danger'>
+                          *PERINGATAN akun akan dihapus secara permanen
+                        </p>
+                        <p className='is-size-7 has-text-danger'>
+                          *Akun akan dihapus secara permanen
+                        </p>
+                        <div className="field">
+                          <button onClick={deleteUser} className="button is-danger">
+                            Hapus Akun
+                          </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-          </div>
-          <div className="field">
-            <label className="label">Email</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
-              />
-            </div>
-          </div>
-          {/* <div className="field">
-            <label className="label">Personality</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={personality}
-                onChange={(e) => setPersonality(e.target.value)}
-                placeholder="Email"
-              />
-            </div>
-          </div> */}
-          <div className="field">
-            <button type="submit" className="button is-success">
-              Perbarui
-            </button>
-          </div>
-        </form>
-        <div className="field">
-          <button onClick={deleteUser} className="button is-danger">
-            Hapus Akun
-          </button>
         </div>
       </div>
-    </div>
-  );
+    </section>
+
+   );
 };
 
 export default EditUser;

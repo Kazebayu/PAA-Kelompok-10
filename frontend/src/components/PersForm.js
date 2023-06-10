@@ -3,8 +3,6 @@ import axios from 'axios';
 import { useNavigate, useParams } from "react-router-dom";
 
 const PersForm = () => {
-const [name,setName] = useState("");
-const [email,setEmail] = useState("");
 const [personality,setPersonality] = useState("");
 const navigate = useNavigate();
 const {id} = useParams();
@@ -34,8 +32,6 @@ const updateUser = async (e) => {
 
 const getUserById = async () =>{
     const response =await axios.get(`http://localhost:5000/users/${id}`)
-    setName(response.data.name);
-    setEmail(response.data.email);
     setPersonality(response.data.personality);
 }
 
@@ -93,14 +89,19 @@ const handleHasil = () => {
 
 
   return (
-    <div className="columns mt-5 is-center">
-        <div className="column is-half">
-            <form onSubmit={updateUser}>
-                <div className="field">
+    <section className="hero has-background-light is-fullwidth pb-5">
+      <div className="hero-body">
+        <div className="container">
+          <div className='columns is-centered'>
+            <div className='column is-7-desktop'>
+            <form className='box has-background-primary-light' onSubmit={updateUser}>
+            <h1 className='label has-text-centered is-size-4 mt-2 '>Isilah pertanyaan-pertanyaan dibawah ini sesuai dengan isi hatimu</h1>
+            <hr className='has-background-grey-lighter'></hr>
+                <div className="field box">
                     <label className="label">Pertanyaan 1</label>
                     <p>Saya mencoba untuk tidak menarik perhatian pada diri daya sendiri</p>
-                    <div className="control">
-                        <label className="radio">
+                    <div className="control columns mt-1">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p1"
@@ -109,7 +110,7 @@ const handleHasil = () => {
                             />
                             Tidak Akurat
                         </label>
-                        <label className="radio">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p1"
@@ -120,11 +121,11 @@ const handleHasil = () => {
                         </label>
                     </div>
                 </div>
-                <div className="field">
+                <div className="field box">
                     <label className="label">Pertanyaan 2</label>
                     <p>Berada di sekitar banyak orang membuat saya bersemangat</p>
-                    <div className="control">
-                        <label className="radio">
+                    <div className="control columns mt-1">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p2"
@@ -133,7 +134,7 @@ const handleHasil = () => {
                             />
                             Tidak Akurat
                         </label>
-                        <label className="radio">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p2"
@@ -144,11 +145,11 @@ const handleHasil = () => {
                         </label>
                     </div>
                 </div>
-                <div className="field">
+                <div className="field box">
                     <label className="label">Pertanyaan 3</label>
                     <p>Saya sering menjadi orang yang memulai percakapan</p>
-                    <div className="control">
-                        <label className="radio">
+                    <div className="control columns mt-1">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p3"
@@ -157,7 +158,7 @@ const handleHasil = () => {
                             />
                             Tidak Akurat
                         </label>
-                        <label className="radio">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p3"
@@ -170,11 +171,11 @@ const handleHasil = () => {
                 </div>
 
 
-                <div className="field">
+                <div className="field box">
                     <label className="label">Pertanyaan 4</label>
                     <p>Saya menghabiskan waktu mencoba memahami diri sendiri</p>
-                    <div className="control">
-                        <label className="radio">
+                    <div className="control columns mt-1">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p4"
@@ -183,7 +184,7 @@ const handleHasil = () => {
                             />
                             Tidak Akurat
                         </label>
-                        <label className="radio">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p4"
@@ -194,11 +195,11 @@ const handleHasil = () => {
                         </label>
                     </div>
                 </div>
-                <div className="field">
+                <div className="field box">
                     <label className="label">Pertanyaan 5</label>
                     <p>Saya menikmati diskusi filosofis</p>
-                    <div className="control">
-                        <label className="radio">
+                    <div className="control columns mt-1">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p5"
@@ -207,7 +208,7 @@ const handleHasil = () => {
                             />
                             Tidak Akurat
                         </label>
-                        <label className="radio">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p5"
@@ -218,11 +219,11 @@ const handleHasil = () => {
                         </label>
                     </div>
                 </div>
-                <div className="field">
+                <div className="field box">
                     <label className="label">Pertanyaan 6</label>
                     <p>Saya menyukai ide-ide yang mudah dipahami daripada ide-ide yang kompleks </p>
-                    <div className="control">
-                        <label className="radio">
+                    <div className="control columns mt-1">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p6"
@@ -231,7 +232,7 @@ const handleHasil = () => {
                             />
                             Tidak Akurat
                         </label>
-                        <label className="radio">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p6"
@@ -245,11 +246,11 @@ const handleHasil = () => {
 
 
 
-                <div className="field">
+                <div className="field box">
                     <label className="label">Pertanyaan 7</label>
                     <p>Saya mengutamakan kebutuhan saya daripada kebutuhan orang lain</p>
-                    <div className="control">
-                        <label className="radio">
+                    <div className="control columns mt-1">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p7"
@@ -258,7 +259,7 @@ const handleHasil = () => {
                             />
                             Tidak Akurat
                         </label>
-                        <label className="radio">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p7"
@@ -269,11 +270,11 @@ const handleHasil = () => {
                         </label>
                     </div>
                 </div>   
-                <div className="field">
+                <div className="field box">
                     <label className="label">Pertanyaan 8</label>
                     <p>Saya memaafkan kesalahan orang lain, bahkan ketika itu merugikan saya</p>
-                    <div className="control">
-                        <label className="radio">
+                    <div className="control columns mt-1">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p8"
@@ -282,7 +283,7 @@ const handleHasil = () => {
                             />
                             Tidak Akurat
                         </label>
-                        <label className="radio">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p8"
@@ -293,11 +294,11 @@ const handleHasil = () => {
                         </label>
                     </div>
                 </div>   
-                <div className="field">
+                <div className="field box">
                     <label className="label">Pertanyaan 9</label>
                     <p>Saya objektif saat membuat keputusan</p>
-                    <div className="control">
-                        <label className="radio">
+                    <div className="control columns mt-1">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p9"
@@ -306,7 +307,7 @@ const handleHasil = () => {
                             />
                             Tidak Akurat
                         </label>
-                        <label className="radio">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p9"
@@ -320,11 +321,11 @@ const handleHasil = () => {
 
 
 
-                <div className="field">
+                <div className="field box">
                     <label className="label">Pertanyaan 10</label>
                     <p>Saya kesulitan mengikuti rutinitas</p>
-                    <div className="control">
-                        <label className="radio">
+                    <div className="control columns mt-1">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p10"
@@ -333,7 +334,7 @@ const handleHasil = () => {
                             />
                             Tidak Akurat
                         </label>
-                        <label className="radio">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p10"
@@ -344,11 +345,11 @@ const handleHasil = () => {
                         </label>
                     </div>
                 </div>
-                <div className="field">
+                <div className="field box">
                     <label className="label">Pertanyaan 11</label>
                     <p>Saya sangat memperhatikan tenggat waktu</p>
-                    <div className="control">
-                        <label className="radio">
+                    <div className="control columns mt-1">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p11"
@@ -357,7 +358,7 @@ const handleHasil = () => {
                             />
                             Tidak Akurat
                         </label>
-                        <label className="radio">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p11"
@@ -368,11 +369,11 @@ const handleHasil = () => {
                         </label>
                     </div>
                 </div>
-                <div className="field">
+                <div className="field box">
                     <label className="label">Pertanyaan 12</label>
                     <p>Saya sering membuat keputusan berdasarkan kata hati saya</p>
-                    <div className="control">
-                        <label className="radio">
+                    <div className="control columns mt-1">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p12"
@@ -381,7 +382,7 @@ const handleHasil = () => {
                             />
                             Tidak Akurat
                         </label>
-                        <label className="radio">
+                        <label className="radio column">
                             <input
                                 type="radio"
                                 name="p12"
@@ -392,18 +393,20 @@ const handleHasil = () => {
                         </label>
                     </div>
                 </div>
-                         
-
-
+                <hr className='has-background-grey-lighter'></hr>
                 <div className="field">
-                    <button type='submit' className='button is-success'>
+                    <button type='submit' className='button is-success is-size-4 box'>
                         Simpan
                     </button>
                 </div>
-            </form>
+                </form>
+                </div>
+            </div>
         </div>
-    </div>
+      </div>
+    </section>
   )
 }
+
 
 export default PersForm;

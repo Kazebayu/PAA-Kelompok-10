@@ -30,23 +30,25 @@ const Login = () => {
             <div className='columns is-centered'>
                 <div className='column is-4-desktop'>
                     <form className='box' onSubmit={Auth}>
-                    <h1 className='title has-text-centered is-size-2'>LOGIN</h1>
-                        <div className='field mt-5'>
-                            <label className='label'>Masukkan email:</label>
+                    <h1 className='has-text-weight-bold is-family-monospace has-text-centered is-size-2 has-background-primary box has-text-white'>MyPersonality</h1>
+                    <hr></hr>
+                    <h1 className='label is-size-4 mt-5'>LOGIN</h1>
+                        <div className='field'>
+                            <label className='has-text-weight-medium'>Masukkan email:</label>
                             <div className='controls'>
                                 <input type="text" className='input' placeholder='email@mail.com'
                                 value={email} onChange={(e) => setEmail(e.target.value)}/>
                             </div>
                         </div>
                         <div className='field mt-5'>
-                            <label className='label'>Masukkan password:</label>
+                            <label className='has-text-weight-medium'>Masukkan password:</label>
                             <div className='controls'>
                                 <input type="password" className='input' placeholder='****'
                                 value={password} onChange={(e) => setPassword(e.target.value)}/>
                             </div>
                         </div>
                         <div className='field mt-5'>
-                            <button className='button is-success is-fullwidth'>Login</button>
+                            <button className='button is-primary is-fullwidth'>Login</button>
                         </div>
                         <Link to={"register"}>Tidak punya akun ?</Link>
                         <p className='has-text-centered'>{msg}</p>
